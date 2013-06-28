@@ -23,11 +23,9 @@
         <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want 
             to import. -->
         <jboss.bom.version>1.0.5.Final</jboss.bom.version>
-        <!-- Alternatively, comment out the above line, and un-comment the 
-            line below to use version 1.0.4.Final-redhat-1 which is a release certified 
-            to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 
-            maven repository. -->
-        <!-- <jboss.bom.version>1.0.4.Final-redhat-1</jboss.bom.version>> -->
+        <org.richfaces.bom.version>4.3.1.Final</org.richfaces.bom.version>
+
+
         <!-- other plugin versions -->
         <compiler.plugin.version>2.3.2</compiler.plugin.version>
         <surefire.plugin.version>2.4.3</surefire.plugin.version>
@@ -69,6 +67,14 @@
                 <version>1.0.6.CR1</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.richfaces</groupId>
+                <artifactId>richfaces-bom</artifactId>
+                <version>${org.richfaces.bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -205,6 +211,16 @@
         <dependency>
             <groupId>org.picketlink</groupId>
             <artifactId>picketlink-idm-schema</artifactId>
+        </dependency>
+
+        <!--Richfaces-->
+        <dependency>
+            <groupId>org.richfaces.ui</groupId>
+            <artifactId>richfaces-components-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.richfaces.core</groupId>
+            <artifactId>richfaces-core-impl</artifactId>
         </dependency>
 
     </dependencies>

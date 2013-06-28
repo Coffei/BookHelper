@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +23,9 @@ public class MemberDao {
 
     @Inject
     private EntityManager em;
+
+    @Inject
+    private Logger log;
 
 
     public void create(Member member) {
@@ -59,5 +63,26 @@ public class MemberDao {
         query.orderBy(cb.asc(member.get("username")));
 
         return em.createQuery(query).getResultList();
+    }
+
+
+    public Member findByUsername(String username) {
+        if(username==null)
+            throw new NullPointerException("username");
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Member> query = cb.createQuery(Member.class);
+        Root<Member> member = query.from(Member.class);
+        query.where(cb.equal(member.get("username"), username));
+
+        List<Member> results = em.createQuery(query).getResultList();
+        if(!results.isEmpty()) {
+            if(results.size()>1) { // Should not happen
+                log.warning("There are more users under username: " + username);
+            }
+            return results.get(0);
+        }
+
+        return null;
     }
 }
