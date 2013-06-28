@@ -10,11 +10,11 @@
    <datasource jndi-name="java:jboss/datasources/book_helperDS"
       pool-name="{artifactId}" enabled="true"
       use-java-context="true">
-      <connection-url>jdbc:h2:mem:book_helper;DB_CLOSE_DELAY=-1</connection-url>
-      <driver>h2</driver>
+      <connection-url>jdbc:postgresql:bookhelper</connection-url>
+      <driver>postgres</driver>
       <security>
-         <user-name>sa</user-name>
-         <password>sa</password>
+         <user-name>bookhelper</user-name>
+         <password>bookhelper</password>
       </security>
    </datasource>
 </datasources>

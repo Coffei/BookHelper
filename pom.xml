@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.coffei.bookhelper</groupId>
@@ -16,13 +16,13 @@
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
             resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
+
         <!-- JBoss dependency versions -->
         <jboss.as.plugin.version>7.3.Final</jboss.as.plugin.version>
-        
+
         <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want 
             to import. -->
-        <jboss.bom.version>1.0.4.Final</jboss.bom.version>
+        <jboss.bom.version>1.0.5.Final</jboss.bom.version>
         <!-- Alternatively, comment out the above line, and un-comment the 
             line below to use version 1.0.4.Final-redhat-1 which is a release certified 
             to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 
@@ -63,9 +63,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-security</artifactId>
+                <version>1.0.6.CR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-    
+
     <dependencies>
 
         <!-- First declare the APIs we depend on and need for compilation. 
@@ -172,6 +179,32 @@
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- PicketLink stuff -->
+        <!-- Import the PicketLink API, we deploy this as library with the application,
+       and can compile against it -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-core-api</artifactId>
+
+        </dependency>
+
+        <!-- Import the PicketLink implementation, we deploy this as library with
+            the application, but can't compile against it -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-core-impl</artifactId>
+            <scope>runtime</scope>
+
+        </dependency>
+
+        <!-- Import the PicketLink default IDM schema for JPA. You can provide
+            your own schema if you like. We deploy this as library with the application,
+            but can't compile against it -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-idm-schema</artifactId>
         </dependency>
 
     </dependencies>
